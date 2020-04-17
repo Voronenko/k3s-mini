@@ -1,0 +1,5 @@
+.terraform
+terraform.d
+*.backup
+provisioners/1_*
+provisioners/2_*

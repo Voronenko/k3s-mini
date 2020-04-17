@@ -1,0 +1,30 @@
+---
+
+- include_vars: "{{shared_dir}}/common_vars.yml"
+  tags:
+    - always
+
+- debug: msg="in {{shared_dir}}/providers/ {{box_provider}}-{{env}}-vars.yml or {{box_provider}}-vars.yml "
+
+- name: Include provider related vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{shared_dir}}/providers/{{box_provider}}-{{env}}-vars.yml"
+        - "{{shared_dir}}/providers/{{box_provider}}-vars.yml"
+        - "{{shared_dir}}/providers/default-vars.yml"
+      skip: true
+  tags:
+    - always
+
+- debug: msg="in {{shared_dir}}/envs/ env-{{env}}-vars.yml"
+
+- name: Include Environment related vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{shared_dir}}/envs/env-{{env}}-vars.yml"
+        - "{{shared_dir}}/envs/env-default-vars.yml"
+      skip: true
+  tags:
+    - always

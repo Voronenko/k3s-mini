@@ -1,0 +1,28 @@
+---
+
+box_provider: "{{ lookup('env','BOX_PROVIDER') or 'default' }}"
+env: default
+
+# BASE-BOX
+box_deploy_user: ubuntu
+box_option_security_updates: false
+box_deploy_authorized_keys:
+   - "{{shared_dir}}/files/keys/id_rsa.pub"
+# /BASE-BOX
+
+box_whitelisted_hosts: "{{ groups['base_box'] | map('extract', hostvars, ['ansible_host']) | map('regex_replace', '^(.*)$','\\1/32') | list  }}"
+#  - "x.y.10.4/32"  # slavko
+
+# ^^^ alternative
+#   - name: Allow eth1 port 5432 access to Web servers
+#     ufw: rule=allow interface=eth1 direction=in port=5432 proto=tcp src="{{ hostvars[item]['ansible_eth1']['ipv4']['address'] }}"
+#     with_items: groups['webservers']
+
+box_ufw_rules_allow_from_hosts: []
+
+box_ssh_banner: >
+  Welcome on managed server.
+  You are accessing a secured system and your actions will be logged along
+  with identifying information. Disconnect immediately if you are not an
+  authorized user of this system.
+

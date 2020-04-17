@@ -1,0 +1,7 @@
+[cluster_master]
+192.168.3.100
+
+[all:vars]
+ansible_user=slavko
+box_deploy_pass=
+

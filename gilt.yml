@@ -1,0 +1,11 @@
+---
+  - git: https://github.com/oops-to-devops/base-box.git
+    version: master
+    dst: provisioners/1_base-box/
+    post_commands:
+      - make
+  - git: https://github.com/oops-to-devops/docker-box.git
+    version: master
+    dst: provisioners/2_docker-box/
+    post_commands:
+      - make
