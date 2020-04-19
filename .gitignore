@@ -3,3 +3,4 @@ terraform.d
 *.backup
 provisioners/1_*
 provisioners/2_*
+perks/traefik/traefik_certs/*.pem
