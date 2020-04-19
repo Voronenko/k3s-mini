@@ -370,3 +370,39 @@ Again, nothing magic in token: you can use https://jwt.io/#debugger-io to inspec
   "sub": "system:serviceaccount:kube-system:traefik-ingress-controller"
 }
 ```
+
+```
+export APISERVER=https://192.168.3.100:6443
+export TOKEN=$(cat kubernetes_data/token)
+
+curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
+```
+
+
+# Troubleshouting
+
+Consider some of  https://github.com/Voronenko/dotfiles/blob/master/Makefile#L185
+
+Like
+
+UI: Octant
+
+
+Inspect credentials for system account
+
+```
+rakkess --sa kube-system:traefik-ingress-controller
+
+```
+
+Reverse task: check which roles are associated with service account
+
+```
+kubectl get clusterrolebindings -o json | jq -r '
+  .items[] |
+  select(
+    .subjects // [] | .[] |
+    [.kind,.namespace,.name] == ["ServiceAccount","kube-system","traefik-ingress-controller"]
+  ) |
+  .metadata.name'
+```
