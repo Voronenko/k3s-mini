@@ -406,3 +406,50 @@ kubectl get clusterrolebindings -o json | jq -r '
   ) |
   .metadata.name'
 ```
+
+## traefik switches
+
+```
+    --providers.kubernetescrd  (Default: "false")
+        Enable Kubernetes backend with default settings.
+    --providers.kubernetescrd.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+    --providers.kubernetescrd.disablepasshostheaders  (Default: "false")
+        Kubernetes disable PassHost Headers.
+    --providers.kubernetescrd.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+    --providers.kubernetescrd.ingressclass  (Default: "")
+        Value of kubernetes.io/ingress.class annotation to watch for.
+    --providers.kubernetescrd.labelselector  (Default: "")
+        Kubernetes label selector to use.
+    --providers.kubernetescrd.namespaces  (Default: "")
+        Kubernetes namespaces.
+    --providers.kubernetescrd.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+    --providers.kubernetescrd.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client).
+    --providers.kubernetesingress  (Default: "false")
+        Enable Kubernetes backend with default settings.
+    --providers.kubernetesingress.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+    --providers.kubernetesingress.disablepasshostheaders  (Default: "false")
+        Kubernetes disable PassHost Headers.
+    --providers.kubernetesingress.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+    --providers.kubernetesingress.ingressclass  (Default: "")
+        Value of kubernetes.io/ingress.class annotation to watch for.
+    --providers.kubernetesingress.ingressendpoint.hostname  (Default: "")
+        Hostname used for Kubernetes Ingress endpoints.
+    --providers.kubernetesingress.ingressendpoint.ip  (Default: "")
+        IP used for Kubernetes Ingress endpoints.
+    --providers.kubernetesingress.ingressendpoint.publishedservice  (Default: "")
+        Published Kubernetes Service to copy status from.
+    --providers.kubernetesingress.labelselector  (Default: "")
+        Kubernetes Ingress label selector to use.
+    --providers.kubernetesingress.namespaces  (Default: "")
+        Kubernetes namespaces.
+    --providers.kubernetesingress.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+    --providers.kubernetesingress.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client).
+```
