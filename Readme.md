@@ -478,4 +478,9 @@ The installation script will auto-detect if your OS is using systemd or openrc a
 
 When running with systemd, logs will be created in /var/log/syslog and viewed using journalctl -u k3s.
 
+There you might get some hints, like 
+```
+кві 21 15:42:44 u18d k3s[612]: E0421 15:42:44.936960     612 authentication.go:104] Unable to authenticate the request due to an error: invalid bearer token
+```
+which would provide you are clue on traefik startups issue with k8s
 
