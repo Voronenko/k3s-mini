@@ -383,6 +383,9 @@ curl -X GET $APISERVER/api/v1/endpoints --header "Authorization: Bearer $TOKEN" 
 
 # Troubleshouting
 
+Exploring cluster roles in namespace `kubectl describe clusterrole --namespace kube-system`
+
+
 Consider some of  https://github.com/Voronenko/dotfiles/blob/master/Makefile#L185
 
 Like
