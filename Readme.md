@@ -376,6 +376,8 @@ export APISERVER=https://192.168.3.100:6443
 export TOKEN=$(cat kubernetes_data/token)
 
 curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
+
+curl -X GET $APISERVER/api/v1/endpoints --header "Authorization: Bearer $TOKEN" --insecure
 ```
 
 
@@ -406,3 +408,79 @@ kubectl get clusterrolebindings -o json | jq -r '
   ) |
   .metadata.name'
 ```
+
+## traefik switches
+
+```
+    --providers.kubernetescrd  (Default: "false")
+        Enable Kubernetes backend with default settings.
+    --providers.kubernetescrd.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+    --providers.kubernetescrd.disablepasshostheaders  (Default: "false")
+        Kubernetes disable PassHost Headers.
+    --providers.kubernetescrd.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+    --providers.kubernetescrd.ingressclass  (Default: "")
+        Value of kubernetes.io/ingress.class annotation to watch for.
+    --providers.kubernetescrd.labelselector  (Default: "")
+        Kubernetes label selector to use.
+    --providers.kubernetescrd.namespaces  (Default: "")
+        Kubernetes namespaces.
+    --providers.kubernetescrd.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+    --providers.kubernetescrd.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client).
+    --providers.kubernetesingress  (Default: "false")
+        Enable Kubernetes backend with default settings.
+    --providers.kubernetesingress.certauthfilepath  (Default: "")
+        Kubernetes certificate authority file path (not needed for in-cluster client).
+    --providers.kubernetesingress.disablepasshostheaders  (Default: "false")
+        Kubernetes disable PassHost Headers.
+    --providers.kubernetesingress.endpoint  (Default: "")
+        Kubernetes server endpoint (required for external cluster client).
+    --providers.kubernetesingress.ingressclass  (Default: "")
+        Value of kubernetes.io/ingress.class annotation to watch for.
+    --providers.kubernetesingress.ingressendpoint.hostname  (Default: "")
+        Hostname used for Kubernetes Ingress endpoints.
+    --providers.kubernetesingress.ingressendpoint.ip  (Default: "")
+        IP used for Kubernetes Ingress endpoints.
+    --providers.kubernetesingress.ingressendpoint.publishedservice  (Default: "")
+        Published Kubernetes Service to copy status from.
+    --providers.kubernetesingress.labelselector  (Default: "")
+        Kubernetes Ingress label selector to use.
+    --providers.kubernetesingress.namespaces  (Default: "")
+        Kubernetes namespaces.
+    --providers.kubernetesingress.throttleduration  (Default: "0")
+        Ingress refresh throttle duration
+    --providers.kubernetesingress.token  (Default: "")
+        Kubernetes bearer token (not needed for in-cluster client).
+```
+
+
+If you are keen which information is queried by traefik:
+
+```
+traefik_1    | E0421 12:30:12.624877       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Endpoints: Get https://192.168.3.101:6443/api/v1/endpoints?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625341       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Service: Get https://192.168.3.101:6443/api/v1/services?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625395       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1beta1.Ingress: Get https://192.168.3.101:6443/apis/extensions/v1beta1/ingresses?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625449       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.Middleware: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/middlewares?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625492       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.IngressRoute: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/ingressroutes?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625531       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.TraefikService: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/traefikservices?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625572       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.TLSOption: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/tlsoptions?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625610       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.IngressRouteTCP: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/ingressroutetcps?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+
+```
+
+### About k3s logs
+
+
+The installation script will auto-detect if your OS is using systemd or openrc and start the service. When running with openrc, logs will be created at /var/log/k3s.log.
+
+When running with systemd, logs will be created in /var/log/syslog and viewed using journalctl -u k3s.
+
+There you might get some hints, like 
+```
+кві 21 15:42:44 u18d k3s[612]: E0421 15:42:44.936960     612 authentication.go:104] Unable to authenticate the request due to an error: invalid bearer token
+```
+which would provide you are clue on traefik startups issue with k8s
+
