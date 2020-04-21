@@ -22,6 +22,7 @@ services:
       - ./traefik_conf:/conf
       - ./kubernetes_data:/var/run/secrets/kubernetes.io/serviceaccount
     restart: always
+#   include, if your docker is also in swarm mode
 #       --docker.swarmmode
     command:
       - "--api.insecure=true"
@@ -44,31 +45,17 @@ services:
       - "--providers.kubernetescrd.endpoint=https://192.168.3.100:6443"
       - "--providers.kubernetescrd.certauthfilepath=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
       - "--providers.kubernetescrd=true"
-
+      - "--providers.kubernetescrd.token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjBUeTQyNm5nakVWbW5PaTRRbDhucGlPeWhlTHhxTXZjUDJsRmNacURjVnMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJu$
     networks:
       - default
       - traefik-public
-#    labels:
-#      - 'traefik.http.routers.http-catchall.rule: "hostregexp(`{host:.+}`)"'
-#      - 'traefik.http.routers.http-catchall.entrypoints: "web"'
-#      - 'traefik.http.routers.http-catchall.middlewares: "redirect-to-https@docker"'
-#      - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme: "https"'
-#  whoami:
-#    image: "containous/whoami"
-#    container_name: "simple-service"
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.whoami.rule=Host(`whoami.k.voronenko.net`)"
-#      - "traefik.http.routers.whoami.entrypoints=web"
-#
-##      - "traefik.http.middlewares.traefik-auth.basicauth.users=USER:PASSWORD"
-##      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
-##      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
-
-#      - "traefik.http.routers.traefik-secure.entrypoints=websecure"
-#      - "traefik.http.routers.traefik-secure.rule=Host(`whoami.k.voronenko.net`)"
-##      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
-#      - "traefik.http.routers.traefik-secure.tls=true"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.k.voronenko.net`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencryptresolver"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.tls=true"
   portainer:
     image: portainer/portainer
     restart: always

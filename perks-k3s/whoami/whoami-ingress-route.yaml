@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`celleri.ch`) && PathPrefix(`/notls`)
+    - match: Host(`whoami.k.voronenko.net`)
       kind: Rule
       services:
         - name: whoami
@@ -23,7 +23,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`celleri.ch`) && PathPrefix(`/tls`)
+    - match: Host(`whoami.k.voronenko.net`)
       kind: Rule
       services:
         - name: whoami
