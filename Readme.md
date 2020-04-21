@@ -376,6 +376,8 @@ export APISERVER=https://192.168.3.100:6443
 export TOKEN=$(cat kubernetes_data/token)
 
 curl -X GET $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
+
+curl -X GET $APISERVER/api/v1/endpoints --header "Authorization: Bearer $TOKEN" --insecure
 ```
 
 
