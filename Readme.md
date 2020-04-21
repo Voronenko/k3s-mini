@@ -470,3 +470,12 @@ traefik_1    | E0421 12:30:12.625572       1 reflector.go:125] pkg/mod/k8s.io/cl
 traefik_1    | E0421 12:30:12.625610       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.IngressRouteTCP: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/ingressroutetcps?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
 
 ```
+
+### About k3s logs
+
+
+The installation script will auto-detect if your OS is using systemd or openrc and start the service. When running with openrc, logs will be created at /var/log/k3s.log.
+
+When running with systemd, logs will be created in /var/log/syslog and viewed using journalctl -u k3s.
+
+
