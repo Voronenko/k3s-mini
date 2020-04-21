@@ -455,3 +455,18 @@ kubectl get clusterrolebindings -o json | jq -r '
     --providers.kubernetesingress.token  (Default: "")
         Kubernetes bearer token (not needed for in-cluster client).
 ```
+
+
+If you are keen which information is queried by traefik:
+
+```
+traefik_1    | E0421 12:30:12.624877       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Endpoints: Get https://192.168.3.101:6443/api/v1/endpoints?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625341       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Service: Get https://192.168.3.101:6443/api/v1/services?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625395       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1beta1.Ingress: Get https://192.168.3.101:6443/apis/extensions/v1beta1/ingresses?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625449       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.Middleware: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/middlewares?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625492       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.IngressRoute: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/ingressroutes?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625531       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.TraefikService: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/traefikservices?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625572       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.TLSOption: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/tlsoptions?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+traefik_1    | E0421 12:30:12.625610       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1alpha1.IngressRouteTCP: Get https://192.168.3.101:6443/apis/traefik.containo.us/v1alpha1/ingressroutetcps?limit=500&resourceVersion=0: dial tcp 192.168.3.101:6443: connect: no route to host
+
+```
