@@ -1,0 +1,42 @@
+ssh: sudo cat /etc/rancher/k3s/k3s.yaml
+
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJWekNCL3FBREFnRUNBZ0VBTUFvR0NDcUdTTTQ5QkFNQ01DTXhJVEFmQmdOVkJBTU1HR3N6Y3kxelpYSjIKWlhJdFkyRkFNVFU0TnpNd056WTRNekFlRncweU1EQTBNVGt4TkRRNE1ETmFGdzB6TURBME1UY3hORFE0TUROYQpNQ014SVRBZkJnTlZCQU1NR0dzemN5MXpaWEoyWlhJdFkyRkFNVFU0TnpNd056WTRNekJaTUJNR0J5cUdTTTQ5CkFnRUdDQ3FHU000OUF3RUhBMElBQlBOQ2ZHODFDVVBpRW9SN3RWWENvYjJqWUFiV2xyNnN4eEpDRDRLWEFaZXIKTmtqZUlVR3YrZStNRXdLcndBUi9ZRHJwSHh6WW52QWNhMlVZUXZTYlpTV2pJekFoTUE0R0ExVWREd0VCL3dRRQpBd0lDcERBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDSHkydlpBeWROClpvc1NFdTJwanlCOTNmSHdvOVJIenlHREFjUnpad3dZRUFJZ05wU0JtY0RabGNmek5hV1dEUi9nK0RmSVBhMU4KcTVXVjRrM0JWeUZzbXdVPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://127.0.0.1:6443
+  name: default
+contexts:
+- context:
+    cluster: default
+    user: default
+  name: default
+current-context: default
+kind: Config
+preferences: {}
+users:
+- name: default
+  user:
+    password: 8ab6385ebb3abb27646590238b52e643
+    username: admin
+Result: apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJWekNCL3FBREFnRUNBZ0VBTUFvR0NDcUdTTTQ5QkFNQ01DTXhJVEFmQmdOVkJBTU1HR3N6Y3kxelpYSjIKWlhJdFkyRkFNVFU0TnpNd056WTRNekFlRncweU1EQTBNVGt4TkRRNE1ETmFGdzB6TURBME1UY3hORFE0TUROYQpNQ014SVRBZkJnTlZCQU1NR0dzemN5MXpaWEoyWlhJdFkyRkFNVFU0TnpNd056WTRNekJaTUJNR0J5cUdTTTQ5CkFnRUdDQ3FHU000OUF3RUhBMElBQlBOQ2ZHODFDVVBpRW9SN3RWWENvYjJqWUFiV2xyNnN4eEpDRDRLWEFaZXIKTmtqZUlVR3YrZStNRXdLcndBUi9ZRHJwSHh6WW52QWNhMlVZUXZTYlpTV2pJekFoTUE0R0ExVWREd0VCL3dRRQpBd0lDcERBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUFvR0NDcUdTTTQ5QkFNQ0EwZ0FNRVVDSVFDSHkydlpBeWROClpvc1NFdTJwanlCOTNmSHdvOVJIenlHREFjUnpad3dZRUFJZ05wU0JtY0RabGNmek5hV1dEUi9nK0RmSVBhMU4KcTVXVjRrM0JWeUZzbXdVPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://127.0.0.1:6443
+  name: default
+contexts:
+- context:
+    cluster: default
+    user: default
+  name: default
+current-context: default
+kind: Config
+preferences: {}
+users:
+- name: default
+  user:
+    password: 8ab6385ebb3abb27646590238b52e643
+    username: admin
+
+Saving file to: /home/slavko/kubeconfig
