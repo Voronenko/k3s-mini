@@ -443,7 +443,7 @@ b) adjust traefik2 kubernetescrd backend providing 3 parameters: endpoint, path 
 
 If you did everything right, you should see now something promising on your traefik UI
 
-![alt](docs/traefik_crd.png)
+![alt](https://github.com/Voronenko/k3s-mini/raw/master/docs/traefik_crd.png)
 
 if you do not see one or have issues running traefik up check troubleshouting section.
 
@@ -540,7 +540,7 @@ and apply it:
 
 Once applied, you should see smth promising on a traefik dashboard
 
-![alt](docs/whoami_crd.png)
+![alt](https://github.com/Voronenko/k3s-mini/raw/master/docs/whoami_crd.png)
 
 As you see traefik2 has detected our new workload running on our k3s kubernetes cluster, and moreover it is nicely
 co-exists with classic docker workloads we have on the same box, like portainer.
@@ -548,9 +548,9 @@ co-exists with classic docker workloads we have on the same box, like portainer.
 Let's check if traefik2 routes traefik to our kubernetes workload: as you see you can successfully reach whoami workload
 on a both http and https endpoints and browser accepts your certificate as a trusted grean seal one.
 
-![alt](docs/whoami_workload.png)
+![alt](https://github.com/Voronenko/k3s-mini/raw/master/docs/whoami_workload.png)
 
-![alt](docs/whoami_pod.png)
+![alt](https://github.com/Voronenko/k3s-mini/raw/master/docs/whoami_pod.png)
 
 Yooohoo, we reached our goal. We have traefik2 configured either on your local notebook or perhaps some dedicated machine in your homelab.
 Traefik2 exposes your docker or kubernetes workflow on a http or https endpoints. Traefik2 with optional letsencrypt are responsible for https.
