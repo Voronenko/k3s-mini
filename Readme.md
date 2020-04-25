@@ -588,7 +588,7 @@ kubectl get clusterrolebindings -o json | jq -r '
 ```
 
 d) Traefik docs - for example kubernetescrd backend has a way more configuration switches.
-```
+```txt
     --providers.kubernetescrd  (Default: "false")
         Enable Kubernetes backend with default settings.
     --providers.kubernetescrd.certauthfilepath  (Default: "")
@@ -637,7 +637,7 @@ e) Ensure traefik has enough rights to access apiserver endpoints.
 
 If you are keen which information is queried by traefik: you can see accessed endpoints and order of queriiing by putting some wrong apiserver address in configuration. Having this knowledge, and your traefik kubernetes token you can check that those endpoints are accessible using traefik credentials
 
-```
+```log
 traefik_1    | E0421 12:30:12.624877       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Endpoints: Get https://192.168.3.101:6443/api/v1/endpoints?limit=500&resourceVersion=0:
 traefik_1    | E0421 12:30:12.625341       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1.Service: Get https://192.168.3.101:6443/api/v1/services?limit=500&resourceVersion=0:
 traefik_1    | E0421 12:30:12.625395       1 reflector.go:125] pkg/mod/k8s.io/client-go@v0.0.0-20190718183610-8e956561bbf5/tools/cache/reflector.go:98: Failed to list *v1beta1.Ingress: Get https://192.168.3.101:6443/apis/extensions/v1beta1/ingresses?limit=500&resourceVersion=0:
