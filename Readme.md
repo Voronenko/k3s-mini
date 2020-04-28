@@ -4,9 +4,9 @@ This is followup to my local docker development environment described here https
 In addition to classic dockerized projects, I also have number of kubernetes projects. Kubernetes is both resource and money consuming
 platform. As I don't always need external cluster, solution I use for local development for kubernetes is https://k3s.io/.
 
-This platform positions itself as a lightweight kubernetes, but true is that it is one of the smallest certified Kubernetes distribution built for IoT & Edge computing, capable also to be deployed on a prod scale to VMs.
+This platform positions itself as a lightweight kubernetes, but truth is that it is one of the smallest certified Kubernetes distribution built for IoT & Edge computing, capable also to be deployed on a prod scale to VMs.
 
-I use k3s in two ways:  I have k3s installed locally on my work notebook, althouth sometimes I need to deploy heavier test workloads, and for that purpose I have two small beasts - two external intel NUCs running ESXi.
+I use k3s in two ways:  I have k3s installed locally on my work notebook, although sometimes I need to deploy locally heavier test workloads, and for that purpose I have two small beasts - two external intel NUCs running ESXi.
 
 By default k3s gets installed with traefik1 as ingress, and if you are satisfied with that setup, you generally can stop reading article.
 
@@ -27,7 +27,7 @@ export CLUSTER_DEPLOY_USER=slavko
 k3sup install --ip $CLUSTER_MASTER --user $CLUSTER_DEPLOY_USER --k3s-extra-args '--no-deploy traefik'
 ```
 
-as a result of the execution you will get connection details necessary to use kubectl. Upon k3s installation
+as a result of the execution you will get connection details necessary to use kubectl. Upon k3s installation you can quickly check if you can see the nodes
 
 ```sh
 # Test your cluster with - export path to k3s cluster kubeconfig:
@@ -35,7 +35,7 @@ export KUBECONFIG=/home/slavko/kubeconfig
 kubectl get node -o wide
 ```
 
-Side note - there is no specific magic with k3s flavor of the kubernetes. You can even start it on your own as docker-compose
+Side note - there is no specific magic with k3s flavor of the kubernetes. You can even start it on your own with docker-compose
 
 ```yaml
 server:
@@ -538,7 +538,7 @@ and apply it:
 	kubectl apply -f whoami-ingress-route.yaml
 ```
 
-Once applied, you should see smth promising on a traefik dashboard
+Once applied, you should see smth promising on a traefik dashboard, namely KubernetesCRD backend
 
 ![alt](https://github.com/Voronenko/k3s-mini/raw/master/docs/whoami_crd.png)
 
@@ -660,3 +660,5 @@ There you might get some hints, like
 which would provide you are clue on traefik startups issue with k8s
 
 Good luck in your journey!
+
+Related code can be found on https://github.com/Voronenko/k3s-mini
